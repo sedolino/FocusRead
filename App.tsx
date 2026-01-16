@@ -109,8 +109,8 @@ const App: React.FC = () => {
   const progress = words.length > 0 ? (currentIndex / (words.length - 1)) * 100 : 0;
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-[#050912] text-slate-200 p-4 md:p-8">
-      <header className="w-full max-w-5xl mb-12 flex flex-col md:flex-row items-center justify-between gap-6">
+    <div className="min-h-screen flex flex-col items-center bg-[#050912] text-slate-200 p-4 md:p-8 transition-colors duration-700">
+      <header className={`w-full max-w-5xl mb-12 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 ${isPlaying ? 'opacity-10 blur-sm translate-y-[-20px] pointer-events-none' : 'opacity-100'}`}>
         <div className="text-center md:text-left">
           <h1 className="text-3xl font-bold tracking-tighter text-white flex items-center justify-center md:justify-start gap-3">
             <span className="w-10 h-10 bg-rose-600 rounded-lg flex items-center justify-center text-lg font-black shadow-lg shadow-rose-900/20">F</span>
@@ -140,18 +140,22 @@ const App: React.FC = () => {
       )}
 
       <main className="w-full max-w-5xl flex flex-col gap-10">
-        <Reader word={words[currentIndex] || null} />
+        <div className={`transition-all duration-500 ${isPlaying ? 'scale-[1.02] shadow-[0_0_80px_-20px_rgba(244,63,94,0.3)]' : ''}`}>
+          <Reader word={words[currentIndex] || null} isPlaying={isPlaying} />
+        </div>
         
-        <Controls 
-          isPlaying={isPlaying} 
-          onTogglePlay={handlePlayPause} 
-          speed={speed} 
-          onSetSpeed={handleSpeedChange} 
-          onReset={handleReset} 
-          progress={progress} 
-        />
+        <div className={`transition-all duration-700 ${isPlaying ? 'opacity-40 hover:opacity-100' : 'opacity-100'}`}>
+          <Controls 
+            isPlaying={isPlaying} 
+            onTogglePlay={handlePlayPause} 
+            speed={speed} 
+            onSetSpeed={handleSpeedChange} 
+            onReset={handleReset} 
+            progress={progress} 
+          />
+        </div>
 
-        <section className="mt-4 space-y-4">
+        <section className={`mt-4 space-y-4 transition-all duration-700 ${isPlaying ? 'opacity-5 blur-md translate-y-[20px] pointer-events-none' : 'opacity-100'}`}>
           <div className="flex items-center justify-between px-2">
             <h2 className="text-sm font-bold text-slate-400 uppercase tracking-widest">Reading Queue</h2>
             <span className="text-[11px] text-slate-500 font-mono bg-slate-900 px-3 py-1 rounded-full border border-slate-800">
@@ -167,7 +171,7 @@ const App: React.FC = () => {
         </section>
       </main>
       
-      <footer className="mt-auto text-slate-700 text-[10px] uppercase tracking-[0.4em] py-8 border-t border-slate-900/50 w-full text-center">
+      <footer className={`mt-auto text-slate-700 text-[10px] uppercase tracking-[0.4em] py-8 border-t border-slate-900/50 w-full text-center transition-opacity duration-700 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
         FocusRead RSVP Engine &bull; System Active &bull; Offline Ready
       </footer>
     </div>

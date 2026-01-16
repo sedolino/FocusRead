@@ -19,7 +19,7 @@ const Controls: React.FC<ControlsProps> = ({
   onReset,
   progress 
 }) => {
-  const speeds: SpeedWPM[] = [300, 500, 700, 900];
+  const speeds: SpeedWPM[] = [300, 400, 500, 700, 900];
 
   return (
     <div className="w-full space-y-6 bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">

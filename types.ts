@@ -1,5 +1,5 @@
 
-export type SpeedWPM = 300 | 500 | 700 | 900;
+export type SpeedWPM = 300 | 400 | 500 | 700 | 900;
 
 export interface WordInfo {
   text: string;
