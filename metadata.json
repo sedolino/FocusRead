@@ -1,0 +1,5 @@
+{
+  "name": "FocusRead RSVP",
+  "description": "A high-performance speed reading application using the RSVP (Rapid Serial Visual Presentation) method with AI-powered text refinement.",
+  "requestFramePermissions": []
+}
