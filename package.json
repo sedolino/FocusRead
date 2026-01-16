@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "react": "^19.2.3",
-    "@google/genai": "^1.37.0",
     "react-dom": "^19.2.3",
-    "pdfjs-dist": "4.0.379"
+    "pdfjs-dist": "4.0.379",
+    "@google/genai": "^1.37.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

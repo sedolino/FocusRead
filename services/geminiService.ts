@@ -1,9 +1,11 @@
 
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-
 export const refineTextForSpeedReading = async (text: string): Promise<string> => {
+  const apiKey = process.env.API_KEY || "";
+  if (!apiKey) throw new Error("API Key missing");
+  
+  const ai = new GoogleGenAI({ apiKey });
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -11,7 +13,6 @@ export const refineTextForSpeedReading = async (text: string): Promise<string> =
       - Simplify complex sentence structures.
       - Remove redundant filler words.
       - Ensure high information density.
-      - Maintain the original meaning and tone.
       - Return ONLY the optimized text.
       
       TEXT:
@@ -20,11 +21,15 @@ export const refineTextForSpeedReading = async (text: string): Promise<string> =
     return response.text || text;
   } catch (error) {
     console.error("Gemini Error:", error);
-    return text;
+    throw error;
   }
 };
 
 export const summarizeText = async (text: string): Promise<string> => {
+  const apiKey = process.env.API_KEY || "";
+  if (!apiKey) throw new Error("API Key missing");
+  
+  const ai = new GoogleGenAI({ apiKey });
   try {
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
@@ -37,6 +42,6 @@ export const summarizeText = async (text: string): Promise<string> => {
     return response.text || text;
   } catch (error) {
     console.error("Gemini Error:", error);
-    return text;
+    throw error;
   }
 };

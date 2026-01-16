@@ -12,7 +12,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
+            background-color: #050912;
             color: #f1f5f9;
             margin: 0;
             overflow-x: hidden;
@@ -20,12 +20,12 @@
         .mono {
             font-family: 'JetBrains Mono', monospace;
         }
-        /* Custom scrollbar for a cleaner look */
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
           width: 8px;
         }
         ::-webkit-scrollbar-track {
-          background: #0f172a;
+          background: #050912;
         }
         ::-webkit-scrollbar-thumb {
           background: #1e293b;
@@ -38,16 +38,19 @@
 <script type="importmap">
 {
   "imports": {
-    "react/": "https://esm.sh/react@^19.2.3/",
     "react": "https://esm.sh/react@^19.2.3",
-    "@google/genai": "https://esm.sh/@google/genai@^1.37.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react-dom": "https://esm.sh/react-dom@^19.2.3",
+    "react-dom/client": "https://esm.sh/react-dom@^19.2.3/client",
+    "pdfjs-dist": "https://esm.sh/pdfjs-dist@4.0.379",
     "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "pdfjs-dist": "https://esm.sh/pdfjs-dist@4.0.379"
+    "@google/genai": "https://esm.sh/@google/genai@^1.37.0"
   }
 }
 </script>
 </head>
 <body>
     <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>
