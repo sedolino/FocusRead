@@ -151,7 +151,9 @@ const App: React.FC = () => {
             speed={speed} 
             onSetSpeed={handleSpeedChange} 
             onReset={handleReset} 
-            progress={progress} 
+            progress={progress}
+            totalWords={words.length}
+            currentIndex={currentIndex}
           />
         </div>
 

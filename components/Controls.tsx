@@ -9,6 +9,8 @@ interface ControlsProps {
   onSetSpeed: (speed: SpeedWPM) => void;
   onReset: () => void;
   progress: number;
+  totalWords: number;
+  currentIndex: number;
 }
 
 const Controls: React.FC<ControlsProps> = ({ 
@@ -17,9 +19,24 @@ const Controls: React.FC<ControlsProps> = ({
   speed, 
   onSetSpeed, 
   onReset,
-  progress 
+  progress,
+  totalWords,
+  currentIndex
 }) => {
   const speeds: SpeedWPM[] = [300, 400, 500, 700, 900];
+
+  const calculateRemainingTime = () => {
+    const remainingWords = totalWords - currentIndex;
+    if (remainingWords <= 0) return '0:00';
+    
+    const minutes = remainingWords / speed;
+    const wholeMinutes = Math.floor(minutes);
+    const seconds = Math.round((minutes - wholeMinutes) * 60);
+    
+    return `${wholeMinutes}:${seconds.toString().padStart(2, '0')}`;
+  };
+
+  const remainingTimeStr = calculateRemainingTime();
 
   return (
     <div className="w-full space-y-6 bg-slate-900 p-6 rounded-2xl border border-slate-800 shadow-xl">
@@ -72,6 +89,15 @@ const Controls: React.FC<ControlsProps> = ({
               {s} <span className="text-[10px] opacity-70">WPM</span>
             </button>
           ))}
+        </div>
+      </div>
+
+      {/* Time Estimation */}
+      <div className="flex items-center justify-center pt-2 border-t border-slate-800/50">
+        <div className="flex items-center gap-3 text-slate-500">
+          <svg className="w-4 h-4 opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span className="text-[11px] uppercase tracking-[0.2em] font-bold">Estimated time to finish:</span>
+          <span className="text-sm font-mono text-slate-300 bg-slate-950 px-3 py-0.5 rounded-lg border border-slate-800/50 shadow-inner">{remainingTimeStr}</span>
         </div>
       </div>
     </div>
