@@ -82,6 +82,7 @@ const App: React.FC = () => {
       };
       reader.readAsArrayBuffer(file);
     } catch (error) {
+      console.error("PDF extraction error:", error);
       setStatusMessage("Error reading PDF.");
       setIsProcessing(false);
       setTimeout(() => setStatusMessage(null), 3000);
